@@ -35,6 +35,8 @@ migrate:
 test:
 	docker compose run --rm app php artisan test -q
 
+.PHONY: artisan
+
 artisan:
 	@docker compose run --rm app php artisan $(CMD)
 	@true
