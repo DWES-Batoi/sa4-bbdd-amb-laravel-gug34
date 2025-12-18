@@ -9,4 +9,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/estadis', EstadiController::class);
-Route::resource('/equips', EquipController::class);
+Route::resource('equips', EquipController::class);

@@ -15,16 +15,16 @@ class UpdateEquipRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Regles de validació per a actualitzar un equip.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'nom'    => 'required|min:3',
+            'nom'       => 'required|min:3',
             'estadi_id' => 'required|integer|exists:estadis,id',
-            'titols' => 'required|integer|min:0'
+            'titols'    => 'required|integer|min:0',
         ];
     }
 }

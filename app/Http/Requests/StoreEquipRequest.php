@@ -8,6 +8,7 @@ class StoreEquipRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
+     * De moment deixem sempre true.
      */
     public function authorize(): bool
     {
@@ -15,16 +16,16 @@ class StoreEquipRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Regles de validació per a crear un nou equip.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'nom'    => 'required|min:3',
+            'nom'       => 'required|min:3',
             'estadi_id' => 'required|integer|exists:estadis,id',
-            'titols' => 'required|integer|min:0'
+            'titols'    => 'required|integer|min:0',
         ];
     }
 }
