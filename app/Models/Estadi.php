@@ -21,4 +21,9 @@ class Estadi extends Model
     {
         return $this->hasMany(Equip::class);
     }
+
+    public function partits()
+    {
+        return $this->hasMany(Partit::class);
+    }
 }
