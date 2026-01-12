@@ -21,9 +21,10 @@ class PartitsSeeder extends Seeder
                         'local_id' => $local->id,
                         'visitant_id' => $visitant->id,
                         'estadi_id' => $local->estadi_id,
-                        'data' => now()->addDays(rand(1, 100)),
+                        'data' => now()->addDays(rand(-30, 30)),
                         'jornada' => rand(1, 34),
-                        'gols' => rand(0, 4)
+                        'gols_local' => rand(0, 5),
+                        'gols_visitant' => rand(0, 5)
                     ]);
                 }
             }

@@ -1,28 +1,27 @@
 @extends('layouts.app')
-@section('title', 'Afegir nova jugadora')
+@section('title', 'Editar jugadora')
 
 @section('content')
 <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Afegir nova jugadora</h1>
+    <h1 class="text-2xl font-bold mb-4">Editar jugadora ID: {{ $jugadora->id }}</h1>
 
-    {{-- Bloque de errores estándar --}}
     @if ($errors->any())
       <div class="bg-red-100 text-red-700 p-2 mb-4 rounded">
         <ul>
-          @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
+          @foreach ($errors->all() as $error) <li>{{ $error }}</li> @endforeach
         </ul>
       </div>
     @endif
 
-    <form action="{{ route('jugadoras.store') }}" method="POST" class="space-y-4 bg-white p-6 rounded shadow">
+    <form action="{{ route('jugadoras.update', $jugadora) }}" method="POST" class="space-y-4 bg-white p-6 rounded shadow">
       @csrf
+      @method('PUT')
+
       <div>
         <label for="equip_id" class="block font-bold">Equip:</label>
         <select name="equip_id" id="equip_id" class="border p-2 w-full rounded">
           @foreach ($equips as $equip)
-            <option value="{{ $equip->id }}" {{ old('equip_id') == $equip->id ? 'selected' : '' }}>
+            <option value="{{ $equip->id }}" {{ old('equip_id', $jugadora->equip_id) == $equip->id ? 'selected' : '' }}>
               {{ $equip->nom }}
             </option>
           @endforeach
@@ -31,16 +30,16 @@
 
       <div>
         <label for="dorsal" class="block font-bold">Dorsal:</label>
-        <input type="number" name="dorsal" id="dorsal" value="{{ old('dorsal') }}" class="border p-2 w-full rounded">
+        <input type="number" name="dorsal" id="dorsal" value="{{ old('dorsal', $jugadora->dorsal) }}" class="border p-2 w-full rounded">
       </div>
 
       <div>
         <label for="data_naixement" class="block font-bold">Data de Naixement:</label>
-        <input type="date" name="data_naixement" id="data_naixement" value="{{ old('data_naixement') }}" class="border p-2 w-full rounded">
+        <input type="date" name="data_naixement" id="data_naixement" value="{{ old('data_naixement', $jugadora->data_naixement) }}" class="border p-2 w-full rounded">
       </div>
 
       <div class="flex gap-2 pt-2">
-          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Afegir Jugadora</button>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Actualitzar Jugadora</button>
           <a href="{{ route('jugadoras.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancelar</a>
       </div>
     </form>

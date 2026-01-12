@@ -9,17 +9,28 @@ class Partit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['local_id', 'visitant_id', 'estadi_id', 'data', 'jornada', 'gols'];
+    protected $fillable = [
+        'local_id',
+        'visitant_id',
+        'estadi_id',
+        'data',
+        'jornada',
+        'gols_local',
+        'gols_visitant'
+    ];
 
-    public function local() {
+    public function local()
+    {
         return $this->belongsTo(Equip::class, 'local_id');
     }
 
-    public function visitant() {
+    public function visitant()
+    {
         return $this->belongsTo(Equip::class, 'visitant_id');
     }
 
-    public function estadi() {
+    public function estadi()
+    {
         return $this->belongsTo(Estadi::class);
     }
 }

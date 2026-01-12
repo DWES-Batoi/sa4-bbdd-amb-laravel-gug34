@@ -23,6 +23,8 @@
 
         <footer class="card__footer">
           <a class="btn btn--ghost" href="{{ route('jugadoras.show', $jugadora) }}">Ver</a>
+          <a class="btn btn--primary" href="{{ route('jugadoras.edit', $jugadora) }}">Editar</a>
+
           <form method="POST" action="{{ route('jugadoras.destroy', $jugadora) }}" class="inline">
             @csrf
             @method('DELETE')

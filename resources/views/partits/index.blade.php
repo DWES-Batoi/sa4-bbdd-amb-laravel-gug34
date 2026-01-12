@@ -18,16 +18,27 @@
 
         <div class="card__body text-center">
           <div class="flex justify-between items-center font-bold text-lg mb-2">
-            <span>{{ $partit->local->nom }}</span>
-            <span class="bg-gray-200 px-2 rounded">{{ $partit->gols ?? 'v' }}</span>
-            <span>{{ $partit->visitant->nom }}</span>
+            <span class="flex-1 text-right pr-2">{{ $partit->local->nom }}</span>
+            
+            <span class="bg-gray-200 px-3 py-1 rounded-full text-blue-800 min-w-[60px]">
+              @if(is_null($partit->gols_local))
+                v
+              @else
+                {{ $partit->gols_local }} - {{ $partit->gols_visitant }}
+              @endif
+            </span>
+
+            <span class="flex-1 text-left pl-2">{{ $partit->visitant->nom }}</span>
           </div>
-          <p class="text-sm text-gray-600">🏟️ {{ $partit->estadi->nom }}</p>
+          
+          <p class="text-sm text-gray-600 mt-2">🏟️ {{ $partit->estadi->nom }}</p>
           <p class="text-sm text-gray-600">📅 {{ \Carbon\Carbon::parse($partit->data)->format('d/m/Y H:i') }}</p>
         </div>
 
         <footer class="card__footer">
           <a class="btn btn--ghost" href="{{ route('partits.show', $partit) }}">Ver</a>
+          <a class="btn btn--primary" href="{{ route('partits.edit', $partit) }}">Editar</a>
+
           <form method="POST" action="{{ route('partits.destroy', $partit) }}" class="inline">
             @csrf
             @method('DELETE')
