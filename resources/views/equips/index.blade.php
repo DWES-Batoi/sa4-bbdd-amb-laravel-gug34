@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="container">
-  <h1 class="title">Listado de equipos</h1>
+  <h1 class="text-3xl font-bold text-blue-800 mb-6">Listado de equipos</h1>
+
+  <p class="mb-4">
+    <a href="{{ route('equips.create') }}" class="bg-blue-600 text-white px-3 py-2 rounded">Nuevo equipo</a>
+  </p>
 
   <div class="grid-cards">
     @foreach ($equips as $equip)

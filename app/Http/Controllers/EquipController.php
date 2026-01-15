@@ -25,7 +25,7 @@ class EquipController extends Controller {
     public function store(StoreEquipRequest $request)
     {
         // Si arribes ací, la validació ja ha passat correctament
-        $this->servei->guardar($request->validated());
+        $this->servei->guardar($request->validated(), $request->file('escut'));
 
         return redirect()->route('equips.index')
             ->with('success', 'Equip creat correctament!');
@@ -38,14 +38,14 @@ class EquipController extends Controller {
 
     // GET /equips/{id}/edit
     public function edit(Equip $equip) {
-        $estadis = \App\Models\Estadi::all();
+        $estadis = Estadi::all();
         return view('equips.edit', compact('equip', 'estadis'));
     }
 
      // PUT /equips/{equip}
     public function update(UpdateEquipRequest $request, Equip $equip)
     {
-        $this->servei->actualitzar($equip->id, $request->validated());
+        $this->servei->actualitzar($equip->id, $request->validated(), $request->file('escut'));
 
         return redirect()->route('equips.index')
             ->with('success', 'Equip actualitzat correctament!');
