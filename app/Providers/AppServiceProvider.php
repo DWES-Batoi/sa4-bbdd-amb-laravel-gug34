@@ -11,6 +11,7 @@ use App\Services\EquipService;
 use App\Services\JugadoraService;
 use App\Services\PartitService;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
