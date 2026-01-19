@@ -92,5 +92,9 @@
     "Password": "Password",
     "Cancel": "Cancel",
     "Save": "Save",
-    "Idioma": "Language"
+    "Idioma": "Language",   
+    "Data Naixement": "Date of Birth",
+    "No foto": "No photo",
+    "Foto jugadora": "Player photo",
+    "VS": "VS"
 }
