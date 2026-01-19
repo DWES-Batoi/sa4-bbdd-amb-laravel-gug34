@@ -2,17 +2,17 @@
 
 @section('content')
 <div class="container">
-  <h1 class="text-3xl font-bold text-blue-800 mb-6">Calendari de Partits</h1>
+  <h1 class="text-3xl font-bold text-blue-800 mb-6">{{ __('Calendari de Partits') }}</h1>
 
   <div class="mb-4">
-    <a href="{{ route('partits.create') }}" class="bg-blue-600 text-white px-3 py-2 rounded">Nuevo Partido</a>
+    <a href="{{ route('partits.create') }}" class="bg-blue-600 text-white px-3 py-2 rounded">{{ __('Nou Partit') }}</a>
   </div>
 
   <div class="grid-cards">
     @foreach ($partits as $partit)
       <article class="card">
         <header class="card__header">
-          <h2 class="card__title">Jornada {{ $partit->jornada }}</h2>
+          <h2 class="card__title">{{ __('Jornada :numero', ['numero' => $partit->jornada]) }}</h2>
           <span class="card__badge">ID: {{ $partit->id }}</span>
         </header>
 
@@ -36,13 +36,16 @@
         </div>
 
         <footer class="card__footer">
-          <a class="btn btn--ghost" href="{{ route('partits.show', $partit) }}">Ver</a>
-          <a class="btn btn--primary" href="{{ route('partits.edit', $partit) }}">Editar</a>
+          <a class="btn btn--ghost" href="{{ route('partits.show', $partit) }}">{{ __('Veure') }}</a>
+          <a class="btn btn--primary" href="{{ route('partits.edit', $partit) }}">{{ __('Editar') }}</a>
 
           <form method="POST" action="{{ route('partits.destroy', $partit) }}" class="inline">
             @csrf
             @method('DELETE')
-            <button class="btn btn--danger" type="submit">Eliminar</button>
+            <button class="btn btn--danger" type="submit"
+                onclick="return confirm('{{ addslashes(__('Segur que vols eliminar aquest partit?')) }}')">
+                {{ __('Eliminar') }}
+            </button>
           </form>
         </footer>
       </article>

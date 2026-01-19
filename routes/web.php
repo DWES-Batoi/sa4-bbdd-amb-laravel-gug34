@@ -6,6 +6,7 @@ use App\Http\Controllers\EstadiController;
 use App\Http\Controllers\PartitController;
 use App\Http\Controllers\JugadoraController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,6 +15,19 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// ✅ Ruta per canviar idioma (i18n)
+Route::get('/locale/{locale}', function (string $locale) {
+    $available = ['ca', 'es', 'en'];
+
+    if (!in_array($locale, $available, true)) {
+        $locale = config('app.fallback_locale', 'en');
+    }
+
+    Session::put('locale', $locale);
+
+    return redirect()->back();
+})->name('setLocale');
 
 
 // ✅ Públicos: SOLO index

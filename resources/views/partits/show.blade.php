@@ -1,5 +1,5 @@
 @extends('layouts.equip')
-@section('title', "Detall del Partit")
+@section('title', __("Detall del Partit"))
 
 @section('content')
   <div class="max-w-2xl mx-auto">
@@ -13,7 +13,7 @@
       />
       
       <div class="mt-6">
-          <a href="{{ route('partits.index') }}" class="text-blue-600 hover:underline">← Tornar al calendari</a>
+          <a href="{{ route('partits.index') }}" class="text-blue-600 hover:underline">{{ __('← Tornar al calendari') }}</a>
       </div>
   </div>
 @endsection
