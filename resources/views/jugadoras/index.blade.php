@@ -12,6 +12,12 @@
     <div class="grid-cards">
       @foreach ($jugadoras as $jugadora)
         <article class="card">
+          @if($jugadora->foto)
+            <img src="{{ asset('storage/' . $jugadora->foto) }}" class="w-12 h-12 rounded-full object-cover shadow">
+          @else
+            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-xs text-gray-500">N/F</div>
+          @endif
+
           <header class="card__header">
             <h2 class="card__title">{{ $jugadora->nom }}</h2>
             <p><strong>{{ __('Dorsal') }}:</strong> {{ $jugadora->dorsal }}</p>

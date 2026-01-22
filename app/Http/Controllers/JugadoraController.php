@@ -27,8 +27,8 @@ class JugadoraController extends Controller
 
     public function store(StoreJugadoraRequest $request)
     {
-        $this->servei->guardar($request->validated());
-        return redirect()->route('jugadoras.index')->with('success', 'Jugadora creada!');
+        $this->servei->guardar($request->validated(), $request->file('foto'));
+        return redirect()->route('jugadoras.index');
     }
 
     public function show(Jugadora $jugadora)
@@ -42,10 +42,16 @@ class JugadoraController extends Controller
         return view('jugadoras.edit', compact('jugadora', 'equips'));
     }
 
-    public function update(UpdateJugadoraRequest $request, Jugadora $jugadora)
+    public function update(UpdateJugadoraRequest $request, $id)
     {
-        $this->servei->actualitzar($jugadora->id, $request->validated());
-        return redirect()->route('jugadoras.index')->with('success', 'Jugadora actualitzada!');
+        $this->servei->actualitzar($id, $request->validated(), $request->file('foto'));
+        return redirect()->route('jugadoras.index');
+    }
+
+    public function destroy($id)
+    {
+        $this->servei->eliminar($id);
+        return redirect()->route('jugadoras.index');
     }
 
 }

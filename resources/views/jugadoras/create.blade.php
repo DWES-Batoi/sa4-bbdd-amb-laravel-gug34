@@ -45,6 +45,11 @@
           class="border p-2 w-full rounded">
       </div>
 
+      <div>
+        <label for="foto" class="block font-bold">{{ __('Foto') }}:</label>
+        <input type="file" name="foto" id="foto" class="border p-2 w-full rounded">
+      </div>
+
       <div class="flex gap-2 pt-2">
         <button type="submit"
           class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">{{ __('Afegir Jugadora') }}</button>

@@ -46,6 +46,16 @@
           value="{{ old('data_naixement', $jugadora->data_naixement) }}" class="border p-2 w-full rounded">
       </div>
 
+      <div>
+        <label for="foto" class="block font-bold">{{ __('Foto') }}:</label>
+        @if($jugadora->foto)
+          <div class="mb-2">
+            <img src="{{ asset('storage/' . $jugadora->foto) }}" alt="Foto actual" class="w-20 h-20 rounded shadow">
+          </div>
+        @endif
+        <input type="file" name="foto" id="foto" class="border p-2 w-full rounded">
+      </div>
+
       <div class="flex gap-2 pt-2">
         <button type="submit"
           class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">{{ __('Actualitzar Jugadora') }}</button>
