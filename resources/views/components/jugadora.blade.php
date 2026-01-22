@@ -1,4 +1,5 @@
 @props([
+    'nom',
     'dorsal',
     'dataNaixement',
     'equip',
@@ -14,7 +15,8 @@
     @endif
     
     <div>
-      <h2 class="text-xl font-bold text-blue-800">{{ __('Dorsal') }}: {{ $dorsal }}</h2>
+      <h2 class="text-xl font-bold text-blue-800">{{ $nom }}</h2>
+      <p><strong>{{ __('Dorsal') }}:</strong> {{ $dorsal }}</p>
       <p><strong>{{ __('Equip') }}:</strong> {{ $equip }}</p>
       <p><strong>{{ __('Data Naixement') }}:</strong> {{ $dataNaixement }}</p>
     </div>

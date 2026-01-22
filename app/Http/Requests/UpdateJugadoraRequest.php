@@ -14,6 +14,7 @@ class UpdateJugadoraRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'nom' => 'required|string|max:255',
             'equip_id' => 'required|integer|exists:equips,id',
             'data_naixement' => 'required|date|before:-16 years',
             'dorsal' => 'required|integer|min:1|max:99',

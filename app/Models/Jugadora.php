@@ -9,7 +9,7 @@ class Jugadora extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['equip_id', 'data_naixement', 'dorsal', 'foto'];
+    protected $fillable = ['nom', 'equip_id', 'data_naixement', 'dorsal', 'foto'];
 
     public function equip()
     {

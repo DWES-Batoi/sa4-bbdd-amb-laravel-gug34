@@ -17,6 +17,7 @@ class JugadoraFactory extends Factory
     public function definition(): array
     {
         return [
+            'nom' => $this->faker->name(),
             'equip_id' => \App\Models\Equip::factory(),
             'data_naixement' => $this->faker->dateTimeBetween('-35 years', '-16 years')->format('Y-m-d'),
             'dorsal' => $this->faker->numberBetween(1, 99),

@@ -2,7 +2,7 @@
 @section('title', __('Afegir nova jugadora'))
 
 @section('content')
-<div class="container mx-auto p-4">
+  <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">{{ __('Afegir nova jugadora') }}</h1>
 
     @if ($errors->any())
@@ -29,19 +29,28 @@
       </div>
 
       <div>
+        <label for="nom" class="block font-bold">{{ __('Nombre') }}:</label>
+        <input type="text" name="nom" id="nom" value="{{ old('nom', $jugadora->nom ?? '') }}"
+          class="border p-2 w-full rounded">
+      </div>
+
+      <div>
         <label for="dorsal" class="block font-bold">{{ __('Dorsal') }}:</label>
         <input type="number" name="dorsal" id="dorsal" value="{{ old('dorsal') }}" class="border p-2 w-full rounded">
       </div>
 
       <div>
         <label for="data_naixement" class="block font-bold">{{ __('Data de Naixement') }}:</label>
-        <input type="date" name="data_naixement" id="data_naixement" value="{{ old('data_naixement') }}" class="border p-2 w-full rounded">
+        <input type="date" name="data_naixement" id="data_naixement" value="{{ old('data_naixement') }}"
+          class="border p-2 w-full rounded">
       </div>
 
       <div class="flex gap-2 pt-2">
-          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">{{ __('Afegir Jugadora') }}</button>
-          <a href="{{ route('jugadoras.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">{{ __('Cancelar') }}</a>
+        <button type="submit"
+          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">{{ __('Afegir Jugadora') }}</button>
+        <a href="{{ route('jugadoras.index') }}"
+          class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">{{ __('Cancelar') }}</a>
       </div>
     </form>
-</div>
+  </div>
 @endsection

@@ -57,4 +57,4 @@ Route::resource('estadis', EstadiController::class)->only(['show']);
 Route::resource('partits', PartitController::class)->only(['show']);
 Route::resource('jugadoras', JugadoraController::class)->only(['show']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
