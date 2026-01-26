@@ -9,6 +9,10 @@ use App\Models\Jugadora;
 
 class JugadoraController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Jugadora::class, 'jugadora');
+    }
     public function index()
     {
         return JugadoraResource::collection(Jugadora::paginate(10));

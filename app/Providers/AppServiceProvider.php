@@ -11,6 +11,9 @@ use App\Services\EquipService;
 use App\Services\JugadoraService;
 use App\Services\PartitService;
 
+use App\Models\Jugadora;
+use App\Policies\JugadoraPolicy;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        Gate::policy(Jugadora::class, JugadoraPolicy::class);
     }
 }
