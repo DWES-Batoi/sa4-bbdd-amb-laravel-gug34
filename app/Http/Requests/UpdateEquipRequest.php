@@ -22,9 +22,9 @@ class UpdateEquipRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom'       => 'required|min:3',
+            'nom' => 'required|min:3|unique:equips,nom,' . $this->route('equip')->id,
             'estadi_id' => 'required|integer|exists:estadis,id',
-            'titols'    => 'required|integer|min:0',
+            'titols' => 'required|integer|min:0',
             'escut' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:2048',
         ];
     }

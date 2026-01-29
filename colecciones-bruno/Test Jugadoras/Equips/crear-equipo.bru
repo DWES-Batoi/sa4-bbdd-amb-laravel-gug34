@@ -1,0 +1,28 @@
+meta {
+  name: crear-equipo
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8000/api/equips
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 2|6j785IvcpbxlXlVBHxPsq2tDCWLsfnAlzveWSMti53bc5f9c
+}
+
+body:json {
+  {
+    "nom": "FC Barcelona",
+    "estadi_id": 1,
+    "titols": 30
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

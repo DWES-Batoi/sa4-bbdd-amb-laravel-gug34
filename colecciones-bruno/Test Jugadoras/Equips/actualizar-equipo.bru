@@ -1,0 +1,28 @@
+meta {
+  name: actualizar-equipo
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8000/api/equips/1
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 2|6j785IvcpbxlXlVBHxPsq2tDCWLsfnAlzveWSMti53bc5f9c
+}
+
+body:json {
+  {
+    "nom": "FC Barcelona",
+    "estadi_id": 1,
+    "titols": 31
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
