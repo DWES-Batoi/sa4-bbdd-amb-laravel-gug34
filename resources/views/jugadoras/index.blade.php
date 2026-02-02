@@ -2,34 +2,38 @@
 
 @section('content')
   <div class="container">
-    <h1 class="text-3xl font-bold text-blue-800 mb-6">{{ __('Llistat de Jugadores') }}</h1>
+    <h1 class="title">{{ __("Llistat de Jugadores") }}</h1>
 
-    <p class="mb-4">
-      <a href="{{ route('jugadoras.create') }}"
-        class="bg-blue-600 text-white px-3 py-2 rounded">{{ __('Nova Jugadora') }}</a>
-    </p>
+    <div>
+      <a href="{{ route('jugadoras.create') }}" class="btn--create">{{ __('Nova Jugadora') }}</a>
+    </div>
 
     <div class="grid-cards">
       @foreach ($jugadoras as $jugadora)
         <article class="card">
-          @if($jugadora->foto)
-            <img src="{{ asset('storage/' . $jugadora->foto) }}" class="w-12 h-12 rounded-full object-cover shadow">
-          @else
-            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-xs text-gray-500">N/F</div>
-          @endif
-
           <header class="card__header">
-            <h2 class="card__title">{{ $jugadora->nom }}</h2>
-            <p><strong>{{ __('Dorsal') }}:</strong> {{ $jugadora->dorsal }}</p>
+            <div class="flex items-center space-x-3">
+              @if($jugadora->foto)
+                <img src="{{ asset('storage/' . $jugadora->foto) }}" class="avatar">
+              @else
+                <div class="avatar-placeholder">N/F</div>
+              @endif
+              <h2 class="card__title">{{ $jugadora->nom }}</h2>
+            </div>
+
+            <div class="card__badge">
+              <strong>{{ __('Dorsal') }}:</strong> {{ $jugadora->dorsal }}
+            </div>
           </header>
 
           <div class="card__body">
-            <p><strong>{{ __('Equip') }}:</strong> {{ $jugadora->equip->nom }}</p>
-            <p><strong>{{ __('Nacimiento') }}:</strong> {{ $jugadora->data_naixement }}</p>
+            <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Equip') }}:</strong> {{ $jugadora->equip->nom }}</p>
+            <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Nacimiento') }}:</strong>
+              {{ $jugadora->data_naixement }}</p>
           </div>
 
           <footer class="card__footer">
-            <a class="btn btn--ghost" href="{{ route('jugadoras.show', $jugadora) }}">{{ __('Veure') }}</a>
+            <a class="btn btn--ghost" href="{{ route('jugadoras.show', $jugadora) }}">{{ __('Ver') }}</a>
             <a class="btn btn--primary" href="{{ route('jugadoras.edit', $jugadora) }}">{{ __('Editar') }}</a>
 
             <form method="POST" action="{{ route('jugadoras.destroy', $jugadora) }}" class="inline">

@@ -6,26 +6,30 @@
   <div class="container">
     <h1 class="title">{{ __("Llistat d'equips") }}</h1>
 
-    <p class="mb-4">
-      <a href="{{ route('equips.create') }}" class="bg-blue-600 text-white px-3 py-2 rounded">{{ __('Crear Equip') }}</a>
-    </p>
+    <div>
+      <a href="{{ route('equips.create') }}" class="btn--create">{{ __('Crear Equip') }}</a>
+    </div>
 
     <div class="grid-cards">
       @foreach ($equips as $equip)
         <article class="card">
-          @if ($equip->escut)
-            <img src="{{ asset('storage/' . $equip->escut) }}" 
-                 alt="{{ __('Escut de :nom', ['nom' => $equip->nom]) }}"
-                 class="h-12 w-12 object-cover rounded-full mb-2">
-          @endif
           <header class="card__header">
-            <h2 class="card__title">{{ $equip->nom }}</h2>
+            <div class="flex items-center space-x-3">
+              @if ($equip->escut)
+                <img src="{{ asset('storage/' . $equip->escut) }}" alt="{{ __('Escut de :nom', ['nom' => $equip->nom]) }}"
+                  class="avatar">
+              @else
+                <div class="avatar-placeholder">N/A</div>
+              @endif
+              <h2 class="card__title">{{ $equip->nom }}</h2>
+            </div>
             <span class="card__badge">ID: {{ $equip->id }}</span>
           </header>
 
           <div class="card__body">
-            <p><strong>{{ __('Ciutat') }}:</strong> {{ $equip->ciutat ?? '—' }}</p>
-            <p><strong>{{ __('Estadi') }}:</strong> {{ $equip->estadi->nom ?? '—' }}</p>
+            <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Ciutat') }}:</strong> {{ $equip->ciutat ?? '—' }}</p>
+            <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Estadi') }}:</strong>
+              {{ $equip->estadi->nom ?? '—' }}</p>
           </div>
 
           <footer class="card__footer">

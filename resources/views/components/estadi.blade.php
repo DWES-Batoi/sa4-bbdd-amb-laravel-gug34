@@ -1,16 +1,22 @@
 @props([
-    'nom',
-    'capacitat',
-    'equips' => collect(),
+  'nom',
+  'capacitat',
+  'equips' => collect(),
 ])
 
-<div class="estadi border rounded-lg shadow-md p-4 bg-white">
-  <h2 class="text-xl font-bold text-blue-800">{{ $nom }}</h2>
+@props([
+  'nom',
+  'capacitat',
+  'equips' => collect(),
+])
 
-  <p><strong>{{ __('Capacitat') }}:</strong> {{ $capacitat }}</p>
+<div class="card">
+  <div class="card__header">
+    <h2 class="card__title">{{ $nom }}</h2>
+  </div>
+  <div class="card__body">
+    <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Capacitat') }}:</strong> {{ $capacitat }}</p>
 
-  <p>
-    <strong>{{ __('Equips') }}:</strong>
-    {{ $equips->count() }}
-  </p>
+    <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Equips') }}:</strong> {{ $equips->count() }}</p>
+  </div>
 </div>

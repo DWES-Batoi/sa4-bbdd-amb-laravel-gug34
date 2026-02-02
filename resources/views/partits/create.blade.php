@@ -2,62 +2,65 @@
 @section('title', __('Crear Nou Partit'))
 
 @section('content')
-<div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">{{ __('Registrar Nou Partit') }}</h1>
+  <div class="container">
+    <h1 class="title">{{ __('Registrar Nou Partit') }}</h1>
 
     @if ($errors->any())
-      <div class="bg-red-100 text-red-700 p-2 mb-4 rounded">
-        <ul>
+      <div class="bg-red-900 border border-red-700 text-red-100 p-4 mb-6 rounded-lg">
+        <ul class="list-disc pl-5">
           @foreach ($errors->all() as $error) <li>{{ $error }}</li> @endforeach
         </ul>
       </div>
     @endif
 
-    <form action="{{ route('partits.store') }}" method="POST" class="space-y-4 bg-white p-6 rounded shadow">
+    <form action="{{ route('partits.store') }}" method="POST" class="form-container">
       @csrf
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block font-bold">{{ __('Equip Local') }}:</label>
-          <select name="local_id" class="border p-2 w-full rounded">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="form-label">{{ __('Equip Local') }}:</label>
+          <select name="local_id" class="form-select">
             @foreach ($equips as $equip)
-              <option value="{{ $equip->id }}" {{ old('local_id') == $equip->id ? 'selected' : '' }}>{{ $equip->nom }}</option>
+              <option value="{{ $equip->id }}" {{ old('local_id') == $equip->id ? 'selected' : '' }}>{{ $equip->nom }}
+              </option>
             @endforeach
           </select>
         </div>
-        <div>
-          <label class="block font-bold">{{ __('Equip Visitant') }}:</label>
-          <select name="visitant_id" class="border p-2 w-full rounded">
+        <div class="form-group">
+          <label class="form-label">{{ __('Equip Visitant') }}:</label>
+          <select name="visitant_id" class="form-select">
             @foreach ($equips as $equip)
-              <option value="{{ $equip->id }}" {{ old('visitant_id') == $equip->id ? 'selected' : '' }}>{{ $equip->nom }}</option>
+              <option value="{{ $equip->id }}" {{ old('visitant_id') == $equip->id ? 'selected' : '' }}>{{ $equip->nom }}
+              </option>
             @endforeach
           </select>
         </div>
       </div>
 
-      <div>
-        <label class="block font-bold">{{ __('Estadi') }}:</label>
-        <select name="estadi_id" class="border p-2 w-full rounded">
+      <div class="form-group">
+        <label class="form-label">{{ __('Estadi') }}:</label>
+        <select name="estadi_id" class="form-select">
           @foreach ($estadis as $estadi)
-            <option value="{{ $estadi->id }}" {{ old('estadi_id') == $estadi->id ? 'selected' : '' }}>{{ $estadi->nom }}</option>
+            <option value="{{ $estadi->id }}" {{ old('estadi_id') == $estadi->id ? 'selected' : '' }}>{{ $estadi->nom }}
+            </option>
           @endforeach
         </select>
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block font-bold">{{ __('Data i Hora') }}:</label>
-          <input type="datetime-local" name="data" value="{{ old('data') }}" class="border p-2 w-full rounded">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="form-group">
+          <label class="form-label">{{ __('Data i Hora') }}:</label>
+          <input type="datetime-local" name="data" value="{{ old('data') }}" class="form-input">
         </div>
-        <div>
-          <label class="block font-bold">{{ __('Jornada') }}:</label>
-          <input type="number" name="jornada" value="{{ old('jornada') }}" class="border p-2 w-full rounded">
+        <div class="form-group">
+          <label class="form-label">{{ __('Jornada') }}:</label>
+          <input type="number" name="jornada" value="{{ old('jornada') }}" class="form-input">
         </div>
       </div>
 
       <div class="flex gap-2 pt-2">
-          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800">{{ __('Guardar Partit') }}</button>
-          <a href="{{ route('partits.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">{{ __('Cancelar') }}</a>
+        <button type="submit" class="btn--submit">{{ __('Guardar Partit') }}</button>
+        <a href="{{ route('partits.index') }}" class="btn--cancel">{{ __('Cancelar') }}</a>
       </div>
     </form>
-</div>
+  </div>
 @endsection
