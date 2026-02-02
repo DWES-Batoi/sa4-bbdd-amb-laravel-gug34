@@ -4,12 +4,6 @@
   'equips' => collect(),
 ])
 
-@props([
-  'nom',
-  'capacitat',
-  'equips' => collect(),
-])
-
 <div class="card">
   <div class="card__header">
     <h2 class="card__title">{{ $nom }}</h2>

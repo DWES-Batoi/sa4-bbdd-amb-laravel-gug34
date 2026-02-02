@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estadi;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreEstadiRequest;
+use App\Http\Requests\UpdateEstadiRequest;
 
 class EstadiController extends Controller
 {
@@ -28,10 +29,9 @@ class EstadiController extends Controller
     }
 
     // POST /estadis
-    public function store(Request $request)
+    public function store(StoreEstadiRequest $request)
     {
-        $estadi = new Estadi($request->all());
-        $estadi->save();
+        Estadi::create($request->validated());
 
         return redirect()
             ->route('estadis.index')
@@ -45,9 +45,9 @@ class EstadiController extends Controller
     }
 
     // PUT/PATCH /estadis/{estadi}
-    public function update(Request $request, Estadi $estadi)
+    public function update(UpdateEstadiRequest $request, Estadi $estadi)
     {
-        $estadi->update($request->all());
+        $estadi->update($request->validated());
 
         return redirect()
             ->route('estadis.index')

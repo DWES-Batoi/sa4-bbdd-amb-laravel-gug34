@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('estadis', EstadiController::class)->except(['index', 'show']);
     Route::resource('partits', PartitController::class)->except(['index', 'show']);
     Route::resource('jugadoras', JugadoraController::class)->except(['index', 'show']);
+
 });
 
 

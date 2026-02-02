@@ -1,37 +1,46 @@
 @extends('layouts.equip')
-@section('title', __("Guia d'Estadis"))
+
+@section('title', __('Guia d\'Estadis'))
 
 @section('content')
-<h1 class="text-3xl font-bold text-blue-800 mb-6">{{ __("Guia d'Estadis") }}</h1>
+  <div class="container">
+    <h1 class="title">{{ __("Llistat d'Estadis") }}</h1>
 
-@if (session('success'))
-  <div class="bg-green-100 text-green-700 p-2 mb-4">{{ session('success') }}</div>
-@endif
+    @if (session('success'))
+      <div class="bg-green-100 text-green-700 p-2 mb-4">{{ session('success') }}</div>
+    @endif
 
-<p class="mb-4">
-  <a href="{{ route('estadis.create') }}" class="bg-blue-600 text-white px-3 py-2 rounded">
-    {{ __('Nou Estadi') }}
-  </a>
-</p>
+    <div>
+      <a href="{{ route('estadis.create') }}" class="btn--create">{{ __('Nou Estadi') }}</a>
+    </div>
 
-<table class="w-full border-collapse border border-gray-300">
-  <thead class="bg-gray-200">
-    <tr>
-      <th class="border border-gray-300 p-2">{{ __('Nom') }}</th>
-      <th class="border border-gray-300 p-2">{{ __('Capacitat') }}</th>
-    </tr>
-  </thead>
-  <tbody>
-  @foreach($estadis as $estadi)
-    <tr class="hover:bg-gray-100">
-      <td class="border border-gray-300 p-2">
-        <a href="{{ route('estadis.show', $estadi->id) }}" class="text-blue-700 hover:underline">
-          {{ $estadi->nom }}
-        </a>
-      </td>
-      <td class="border border-gray-300 p-2">{{ $estadi->capacitat }}</td>
-    </tr>
-  @endforeach
-  </tbody>
-</table>
+    <div class="grid-cards">
+      @foreach($estadis as $estadi)
+        <article class="card">
+          <header class="card__header">
+            <h2 class="card__title">{{ $estadi->nom }}</h2>
+          </header>
+
+          <div class="card__body">
+            <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Capacitat') }}:</strong> {{ $estadi->capacitat }}</p>
+            <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Ciutat') }}:</strong> {{ $estadi->ciutat }}</p>
+          </div>
+
+          <footer class="card__footer">
+            <a class="btn btn--ghost" href="{{ route('estadis.show', $estadi) }}">{{ __('Veure') }}</a>
+            <a class="btn btn--primary" href="{{ route('estadis.edit', $estadi) }}">{{ __('Editar') }}</a>
+
+            <form method="POST" action="{{ route('estadis.destroy', $estadi) }}" class="inline">
+              @csrf
+              @method('DELETE')
+              <button class="btn btn--danger" type="submit"
+                onclick="return confirm('{{ addslashes(__('Segur que vols eliminar aquest equip?')) }}')">
+                {{ __('Eliminar') }}
+              </button>
+            </form>
+          </footer>
+        </article>
+      @endforeach
+    </div>
+  </div>
 @endsection

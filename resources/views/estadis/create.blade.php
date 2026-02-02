@@ -2,45 +2,41 @@
 @section('title', __('Afegir nou estadi'))
 
 @section('content')
-<h1 class="text-2xl font-bold mb-4">{{ __('Afegir nou estadi') }}</h1>
+  <div class="container">
+    <h1 class="title">{{ __('Afegir nou estadi') }}</h1>
 
-@if ($errors->any())
-  <div class="bg-red-100 text-red-700 p-2 mb-4">
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
+    @if ($errors->any())
+      <div class="bg-red-900 border border-red-700 text-red-100 p-4 mb-6 rounded-lg">
+        <ul class="list-disc pl-5">
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+
+    <form action="{{ route('estadis.store') }}" method="POST" class="form-container">
+      @csrf
+
+      <div class="form-group">
+        <label for="nom" class="form-label">{{ __('Nom') }}:</label>
+        <input type="text" name="nom" id="nom" value="{{ old('nom') }}" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label for="capacitat" class="form-label">{{ __('Capacitat') }}:</label>
+        <input type="number" name="capacitat" id="capacitat" value="{{ old('capacitat') }}" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label for="ciutat" class="form-label">{{ __('Ciutat') }}:</label>
+        <input type="text" name="ciutat" id="ciutat" value="{{ old('ciutat') }}" class="form-input">
+      </div>
+
+      <div class="flex gap-2 pt-2">
+        <button type="submit" class="btn--submit">{{ __('Afegir') }}</button>
+        <a href="{{ route('estadis.index') }}" class="btn--cancel">{{ __('Cancelar') }}</a>
+      </div>
+    </form>
   </div>
-@endif
-
-<form action="{{ route('estadis.store') }}" method="POST" class="space-y-4">
-  @csrf
-
-  <div>
-    <label for="nom" class="block font-bold">{{ __('Nom') }}:</label>
-    <input
-      type="text"
-      name="nom"
-      id="nom"
-      value="{{ old('nom') }}"
-      class="border p-2 w-full"
-    >
-  </div>
-
-  <div>
-    <label for="capacitat" class="block font-bold">{{ __('Capacitat') }}:</label>
-    <input
-      type="text"
-      name="capacitat"
-      id="capacitat"
-      value="{{ old('capacitat') }}"
-      class="border p-2 w-full"
-    >
-  </div>
-
-  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
-    {{ __('Afegir') }}
-  </button>
-</form>
 @endsection
