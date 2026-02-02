@@ -33,7 +33,7 @@ migrate:
 	docker compose run --rm app php artisan migrate
 
 test:
-	docker compose run --rm app php artisan test -q
+	docker compose run --rm app php artisan test
 
 .PHONY: artisan
 
