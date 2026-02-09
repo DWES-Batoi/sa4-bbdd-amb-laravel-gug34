@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
+    public const ROLE_ADMIN = 'administrador';
+    public const ROLE_CONVIDAT = 'convidat';
 
     protected $fillable = [
         'name',
@@ -17,6 +19,8 @@ class User extends Authenticatable
         'password',
         'role',
         'equip_id',
+        'google_id',
+        'avatar',
     ];
 
     protected $hidden = [

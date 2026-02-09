@@ -9,7 +9,7 @@ use App\Http\Controllers\Api\EquipController;
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->as('api.')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
     Route::get('/user', function (Request $request) {

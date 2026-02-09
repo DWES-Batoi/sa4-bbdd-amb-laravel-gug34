@@ -27,7 +27,8 @@
           </header>
 
           <div class="card__body">
-            <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Ciutat') }}:</strong> {{ $equip->ciutat ?? '—' }}</p>
+            <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Títols') }}:</strong>
+              {{ $equip->titols }}</p>
             <p><strong class="text-gray-900 dark:text-gray-100">{{ __('Estadi') }}:</strong>
               {{ $equip->estadi->nom ?? '—' }}</p>
           </div>

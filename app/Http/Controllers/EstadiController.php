@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Estadi;
 use App\Http\Requests\StoreEstadiRequest;
 use App\Http\Requests\UpdateEstadiRequest;
+use App\Services\LLMService;
 
 class EstadiController extends Controller
 {
@@ -18,8 +19,12 @@ class EstadiController extends Controller
     // GET /estadis/{estadi}
     public function show(Estadi $estadi)
     {
-        $estadi->load('equips'); // opcional: carrega també els equips
-        return view('estadis.show', compact('estadi'));
+        $prompt = "Escribre una descripción breve y amable del estadio {$estadi->nom}. "
+            . "Incluye 3 datos curiosos y tono divulgativo. Máximo 80 palabras.";
+
+        // Llamamos a la IA local
+        $descripcio = LLMService::getResponse($prompt);
+        return view('estadis.show', compact('estadi', 'descripcio'));
     }
 
     // GET /estadis/create

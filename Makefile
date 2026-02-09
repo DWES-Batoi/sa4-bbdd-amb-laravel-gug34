@@ -45,3 +45,25 @@ composer:
 	@docker compose run --rm app composer $(CMD)
 	@true
 
+reverb:
+	docker compose exec app php artisan reverb:start
+
+queue:
+	docker compose exec app php artisan queue:work
+
+vite:
+	docker compose run --rm --service-ports app npm run dev
+
+build:
+	docker compose run --rm app npm run build
+
+ollama-pull:
+	docker compose exec ollama ollama pull llama3.2:3b
+
+ollama-tags:
+	docker compose exec app curl -sS http://ollama:11434/api/tags
+
+ollama-generate:
+	docker compose exec app curl -sS http://ollama:11434/api/generate \
+		-H "Content-Type: application/json" \
+		-d '{"model":"llama3.2:3b","prompt":"Escribe una frase corta sobre un estadio.","stream":false}'

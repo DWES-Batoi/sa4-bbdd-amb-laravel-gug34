@@ -12,7 +12,7 @@ class Estadi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nom', 'capacitat'];
+    protected $fillable = ['nom', 'capacitat', 'ciutat'];
 
     /**
      * Un estadi té molts equips

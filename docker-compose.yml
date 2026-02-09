@@ -10,6 +10,27 @@ services:
     depends_on:
       - db
       - redis
+      - ollama
+
+    environment:
+      LLM_BASE_URL: http://ollama:11434
+
+  reverb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: futbol-reverb
+    working_dir: /var/www/html
+    command: php artisan reverb:start --host=0.0.0.0 --port=8081
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - redis
+      - db
+    environment:
+      LLM_BASE_URL: http://ollama:11434
 
   web:
     image: nginx:alpine
@@ -57,5 +78,15 @@ services:
     ports:
       - "8080:80"
 
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
 volumes:
   db-data:
+  ollama_data:
