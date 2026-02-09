@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+    /* Layout & Containers */
+    .container {
+        @apply max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8;
+    }
+
+    .title {
+        @apply text-3xl font-bold text-gray-100 mb-6;
+    }
+
+    .grid-cards {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+    }
+
+    /* Cards */
+    .card {
+        @apply bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-700 flex flex-col;
+    }
+
+    .card__header {
+        @apply bg-gray-700 p-4 border-b border-gray-600 flex justify-between items-center;
+    }
+
+    .card__title {
+        @apply text-xl font-semibold text-gray-200 truncate;
+    }
+
+    .card__badge {
+        @apply text-xs font-medium text-gray-400 bg-gray-900 px-2 py-1 rounded;
+    }
+
+    .card__body {
+        @apply p-4 text-gray-300 flex-grow;
+    }
+
+    .card__footer {
+        @apply bg-gray-700 p-4 border-t border-gray-600 flex justify-end space-x-2;
+    }
+
+    /* Forms */
+    .form-container {
+        @apply bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-700 space-y-6 max-w-2xl mx-auto;
+    }
+
+    .form-group {
+        @apply space-y-2;
+    }
+
+    .form-label {
+        @apply block text-sm font-medium text-gray-300;
+    }
+
+    .form-input,
+    .form-select,
+    .form-trix-editor,
+    .form-textarea {
+        @apply w-full bg-gray-900 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 ease-in-out;
+    }
+
+    /* Buttons */
+    .btn {
+        @apply px-3 py-1.5 rounded text-sm font-medium transition-colors duration-200 inline-flex items-center;
+    }
+
+    .btn--primary {
+        @apply bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition inline-block text-center font-medium;
+    }
+
+    .btn--secondary {
+        @apply bg-gray-600 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition inline-block text-center font-medium;
+    }
+
+    .btn--danger {
+        @apply bg-red-600 text-white hover:bg-red-700;
+    }
+
+    .btn--ghost {
+        @apply text-gray-400 hover:text-white hover:bg-gray-700;
+    }
+
+    .btn--cancel {
+        @apply bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition inline-block text-center;
+    }
+
+    .btn--submit {
+        @apply bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition w-full sm:w-auto font-bold tracking-wide;
+    }
+
+    .btn--create {
+        @apply bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 inline-block mb-4 transition;
+    }
+
+    /* Badges */
+    .score-badge {
+        @apply bg-gray-900 px-4 py-2 rounded-full text-blue-400 min-w-[80px] inline-block text-center font-bold border border-gray-700;
+    }
+
+    /* Specific Elements */
+    .avatar {
+        @apply w-12 h-12 rounded-full object-cover shadow border border-gray-600;
+    }
+
+    .avatar-placeholder {
+        @apply w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-xs text-gray-400 font-bold border border-gray-600;
+    }
+}
