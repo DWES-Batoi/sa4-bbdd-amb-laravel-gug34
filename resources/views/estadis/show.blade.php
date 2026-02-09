@@ -6,13 +6,19 @@
     <h1 class="title">{{ __("Detall d'Estadi") }}</h1>
 
     <x-estadi :nom="$estadi->nom" :capacitat="$estadi->capacitat" :equips="$estadi->equips" />
-    <h3>Descripció (IA local)</h3>
+    <div class="mt-8 p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-md">
+        <h3 class="text-xl font-bold text-gray-100 mb-4">Descripció</h3>
 
-    @if(!empty($descripcio))
-      <p>{{ $descripcio }}</p>
-    @else
-      <p><em>No s’ha pogut generar la descripció ara mateix.</em></p>
-    @endif
+        @if(!empty($descripcio))
+            <p class="text-gray-300 leading-relaxed text-lg">
+                {{ $descripcio }}
+            </p>
+        @else
+            <p class="text-gray-400 italic">
+                No s’ha pogut generar la descripció ara mateix.
+            </p>
+        @endif
+    </div>
 
     <div class="flex gap-2 mt-6">
       <a href="{{ route('estadis.index') }}" class="btn--cancel">{{ __('Volver') }}</a>
