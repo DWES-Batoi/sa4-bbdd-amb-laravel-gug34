@@ -13,7 +13,7 @@ class LLMService
             $base = rtrim(config('services.llm.base_url'), '/');
             $model = config('services.llm.model');
 
-            $res = Http::timeout(60)->post($base . '/api/generate', [
+            $res = Http::timeout(120)->post($base . '/api/generate', [
                 'model' => $model,
                 'prompt' => $prompt,
                 'stream' => false,
